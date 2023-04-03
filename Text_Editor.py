@@ -73,8 +73,8 @@ menu.add_cascade(label="File", menu=new_item)
 
 menu.add_cascade(label="View", menu=new_item2)
 
+new_item2.add_checkbutton(label="Darkmode",variable=dm,command=view)
 
-new_item2.add_command(label="Darkmode",command=view)
 
 
 
