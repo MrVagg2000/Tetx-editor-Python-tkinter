@@ -8,7 +8,7 @@ window.title("Simple Text Editor")
 window.rowconfigure(0, minsize=800, weight=1)
 window.columnconfigure(1, minsize=800, weight=1)
 dm = IntVar()
-win = IntVar()
+
 
 def open_file():
     """Open a file for editing"""
@@ -40,7 +40,7 @@ def save_file():
     window.title(f"Simple Text Editor - {filepath}")
 
 def new():
-    txt_edit.delte(0,END)
+    txt_edit.delete(0,END)
 
 def exit():
     window.destroy()
@@ -53,8 +53,9 @@ def view():
 
 
 menu = Menu(window)
-
+window.config(menu=menu)
 new_item = Menu(menu, tearoff=0)
+new_item2 = Menu(menu, tearoff=0)
 
 new_item.add_command(label="Open",command=open_file)
 
@@ -64,25 +65,16 @@ new_item.add_command(label="Save As",command=save_file)
 
 new_item.add_command(label="Exit",command=exit)
 
-menu.add_command(label="Copy", command=lambda: win.event_generate('<Control-c>'))
-menu.add_command(label="Cut", command=lambda: win.event_generate('<Control-x>'))
-menu.add_command(label="Paste", command=lambda: win.event_generate('<Control-v>'))
+new_item.add_command(label="Copy", command=lambda: window.event_generate('<Control-c>'))
+new_item.add_command(label="Cut", command=lambda: window.event_generate('<Control-x>'))
+new_item.add_command(label="Paste", command=lambda: window.event_generate('<Control-v>'))
 
 menu.add_cascade(label="File", menu=new_item)
 
-window.config(menu=menu)
+menu.add_cascade(label="View", menu=new_item2)
 
 
-view = Menu(window)
-
-new_item = Menu(menu, tearoff=5)
-
-new_item.add_checkbutton(label="Darkmode", variable=dm, command=view)
-
-menu.add_cascade(label="darkmode", menu=view)
-
-window.config(menu=view)
-
+new_item2.add_command(label="Darkmode",command=view)
 
 
 
