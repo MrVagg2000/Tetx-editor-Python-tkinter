@@ -40,7 +40,7 @@ def save_file():
     window.title(f"Simple Text Editor - {filepath}")
 
 def new():
-    txt_edit.delete(0,END)
+    txt_edit.delete(1.0,END)
 
 def exit():
     window.destroy()
@@ -86,6 +86,3 @@ txt_edit.grid(row=0, column=1, sticky="nsew")
 
 
 window.mainloop()
-
-
-
